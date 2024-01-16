@@ -1,7 +1,6 @@
 "use client";
 
-import { Check, Dots, Plus, Refresh, Search, Suitcase, UserAvatar, UserNotFound } from "@/components/svgs/Icons";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Check, Plus, Refresh, Search, Suitcase, UserAvatar, UserNotFound } from "@/components/svgs/Icons";
 import { Button } from "@/components/ui/button";
 import {
     Command,
@@ -21,18 +20,21 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Heading } from "../components/Heading";
+import EmployeeRow from "./Employee";
 
 interface Employee {
     id: number;
     name: string;
+    value: string;
     label: string;
     email: string;
     phone: string;
     role: string;
+    roleValue: string;
     joinDate: string;
     department: string;
+    departmentValue: string;
     avatarUrl: string;
-    value: string;
 }
 
 interface Department {
@@ -45,230 +47,220 @@ interface Role {
     label: string;
 }
 
-const departments: Department[] = [
-    {
-        value: "marketing",
-        label: "Marketing",
-    },
-    {
-        value: "engineering",
-        label: "Engineering",
-    },
-    {
-        value: "design",
-        label: "Design",
-    },
-    {
-        value: "sales",
-        label: "Sales",
-    },
-    {
-        value: "human_resources",
-        label: "Human Resources",
-    },
-    {
-        value: "product",
-        label: "Product",
-    },
-    {
-        value: "quality_assurance",
-        label: "Quality Assurance",
-    },
-    {
-        value: "it",
-        label: "IT",
-    },
-    {
-        value: "finance",
-        label: "Finance",
-    },
-    {
-        value: "customer_service",
-        label: "Customer Service",
-    }
-];
-
 const employees: Employee[] = [
     {
         id: 1,
         name: "John Doe",
+        value: "john_doe",
         label: "John Doe",
         email: "john.doe@example.com",
         phone: "123-456-7890",
         role: "Manager",
+        roleValue: "manager",
         joinDate: "2020-01-15",
         department: "Marketing",
+        departmentValue: "marketing",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "john_doe",
     },
     {
         id: 2,
         name: "Jane Smith",
+        value: "jane_smith",
         label: "Jane Smith",
         email: "jane.smith@example.com",
         phone: "234-567-8901",
         role: "Developer",
+        roleValue: "developer",
         joinDate: "2019-06-10",
         department: "Engineering",
+        departmentValue: "engineering",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "jane_smith",
     },
     {
         id: 3,
         name: "Emily Johnson",
+        value: "emily_johnson",
         label: "Emily Johnson",
         email: "emily.johnson@example.com",
         phone: "345-678-9012",
         role: "Designer",
+        roleValue: "designer",
         joinDate: "2021-03-20",
         department: "Design",
+        departmentValue: "design",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "emily_johnson",
     },
     {
         id: 4,
         name: "Michael Brown",
+        value: "michael_brown",
         label: "Michael Brown",
         email: "michael.brown@example.com",
         phone: "456-789-0123",
-        role: "Sales Executive",
+        role: "HR Manager",
+        roleValue: "hr_manager",
         joinDate: "2018-09-05",
         department: "Sales",
+        departmentValue: "sales",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "michael_brown",
     },
     {
         id: 5,
         name: "Sarah Wilson",
+        value: "sarah_wilson",
         label: "Sarah Wilson",
         email: "sarah.wilson@example.com",
         phone: "567-890-1234",
-        role: "HR Manager",
+        role: "Recourcer",
+        roleValue: "recourcer",
         joinDate: "2019-11-22",
         department: "Human Resources",
+        departmentValue: "human_resources",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "sarah_wilson",
     },
     {
         id: 6,
         name: "David Lee",
+        value: "david_lee",
         label: "David Lee",
         email: "david.lee@example.com",
         phone: "678-901-2345",
-        role: "Product Manager",
+        role: "Recourcer",
+        roleValue: "product_manager",
         joinDate: "2020-02-19",
         department: "Product",
+        departmentValue: "product",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "david_lee",
     },
     {
         id: 7,
         name: "Linda Garcia",
+        value: "linda_garcia",
         label: "Linda Garcia",
         email: "linda.garcia@example.com",
         phone: "789-012-3456",
-        role: "Quality Analyst",
+        role: "Recourcer",
+        roleValue: "quality_analyst",
         joinDate: "2021-07-30",
         department: "Quality Assurance",
+        departmentValue: "quality_assurance",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "linda_garcia",
     },
     {
         id: 8,
         name: "Kevin Martinez",
+        value: "kevin_martinez",
         label: "Kevin Martinez",
         email: "kevin.martinez@example.com",
         phone: "890-123-4567",
         role: "Network Administrator",
+        roleValue: "network_administrator",
         joinDate: "2018-12-14",
         department: "IT",
+        departmentValue: "it",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "kevin_martinez",
     },
     {
         id: 9,
         name: "Elizabeth Gonzalez",
+        value: "elizabeth_gonzalez",
         label: "Elizabeth Gonzalez",
         email: "elizabeth.gonzalez@example.com",
         phone: "901-234-5678",
         role: "Accountant",
+        roleValue: "accountant",
         joinDate: "2020-05-05",
         department: "Finance",
+        departmentValue: "finance",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "elizabeth_gonzalez",
     },
     {
         id: 10,
         name: "Daniel Harris",
+        value: "daniel_harris",
         label: "Daniel Harris",
         email: "daniel.harris@example.com",
         phone: "012-345-6789",
         role: "Support Specialist",
+        roleValue: "support_specialist",
         joinDate: "2021-09-20",
         department: "Customer Service",
+        departmentValue: "customer_service",
         avatarUrl: "https://picsum.photos/1920/1080",
-        value: "daniel_harris",
     }
 ];
 
-const roles: Role[] = [
-    { value: "manager", label: "Manager" },
-    { value: "developer", label: "Developer" },
-    { value: "designer", label: "Designer" },
-    { value: "sales_executive", label: "Sales Executive" },
-    { value: "hr_manager", label: "HR Manager" },
-    { value: "product_manager", label: "Product Manager" },
-    { value: "quality_analyst", label: "Quality Analyst" },
-    { value: "network_administrator", label: "Network Administrator" },
-    { value: "accountant", label: "Accountant" },
-    { value: "support_specialist", label: "Support Specialist" }
-];
+const createDepartmentsRolesArrays = (employees: Employee[]): [Department[], Role[]] => {
+    const departments: Department[] = [];
+    const roles: Role[] = [];
 
-const formatDate = (dateString: string): string => {
-    const options: Intl.DateTimeFormatOptions = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    };
-    return new Date(dateString).toLocaleDateString('en-GB', options);
-}
+    employees.forEach(emp => {
+        if (!departments.some(d => d.value === emp.departmentValue)) {
+            departments.push({ value: emp.departmentValue, label: emp.department });
+        }
+
+        const roleValue = emp.role.replace(/\s+/g, '_').toLowerCase();
+        if (!roles.some(r => r.value === roleValue)) {
+            roles.push({ value: roleValue, label: emp.role });
+        }
+    });
+
+    return [departments, roles];
+};
 
 export default function Employees() {
     const [open, setOpen] = useState<boolean>(false);
     const [value, setValue] = useState<string>("");
+
     const [searchQuery, setSearchQuery] = useState<string>("");
 
-    const [selectedEmployee, setSelectedEmployee] = useState<Employee | null>(null);
+    const [selectedEmployees, setSelectedEmployees] = useState<Employee[] | null>(employees);
 
-    const handleSelectEmployee = (employeeValue: string) => {
-        const employee = employees.find(e => e.value === employeeValue);
-        setSelectedEmployee(employee || null);
-    };
-
-    const filteredEmployees = employees.filter((employee) =>
-        employee.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
-    const filteredItems = [...departments, ...roles].filter(item =>
-        item.label.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const [departments, roles] = createDepartmentsRolesArrays(employees);
 
     const handleSearchChange = (newValue: string): void => {
         setSearchQuery(newValue || '');
     };
 
-    const getTypeOfSelectedItem = (value: string): string | null => {
-        if (employees.some(employee => employee.value === value)) {
-            return 'employee';
-        } else if (departments.some(department => department.value === value)) {
-            return 'department';
-        } else if (roles.some(role => role.value === value)) {
-            return 'role';
+    const handleReset = (): void => {
+        setSelectedEmployees(employees);
+        setValue("");
+    }
+
+    const handleSelectEmployee = (currentValue: string): void => {
+        if (currentValue) {
+            const employee = employees.find(e => e.value === currentValue);
+            setSelectedEmployees(employee ? [employee] : []);
+        } else {
+            setSelectedEmployees(employees);
         }
-        return null;
+
+        setValue(currentValue === value ? "" : currentValue);
+        setOpen(false);
     };
 
-    const selectedItemType = getTypeOfSelectedItem(value);
+    const handleSelectDepOrRoles = (currentValue: string): void => {
+        if (currentValue) {
+            const filteredDepartments = employees.filter(e => e.departmentValue === currentValue);
+            const filteredRoles = employees.filter(e => e.roleValue === currentValue);
+            console.log([...filteredDepartments, ...filteredRoles]);
+            setSelectedEmployees([...filteredDepartments, ...filteredRoles])
+        } else {
+            setSelectedEmployees(employees);
+        }
+
+        console.log(currentValue);
+        setValue(currentValue === value ? "" : currentValue);
+        setOpen(false);
+    }
+
+    const filteredEmployees = employees.filter((employee) =>
+        employee.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const filteredDepartmentsAndRoles = [...departments, ...roles].filter((employee) =>
+        employee.label.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <>
@@ -286,23 +278,12 @@ export default function Employees() {
                                 aria-expanded={open}
                                 className="w-[300px] flex justify-start items-center gap-x-2"
                             >
-                                {value
-                                    ? (
-                                        <>
-                                            {selectedItemType === 'employee' ? (
-                                                <UserAvatar className="stroke-zinc-500 h-5 w-5" />
-                                            ) : (
-                                                <Suitcase className="stroke-zinc-500 h-5 w-5" />
-                                            )}
-                                            {[...departments, ...employees, ...roles].find((item) => item.value === value)?.label}
-                                        </>
-                                    )
-                                    : (
-                                        <>
-                                            <Search className="stroke-zinc-500 h-4 w-4" />
-                                            <span className="text-zinc-500">Search...</span>
-                                        </>
-                                    )}
+                                <Search className="stroke-zinc-500 h-4 w-4" />
+                                {value ? (
+                                    selectedEmployees?.find((item) => item.value === value)?.label
+                                ) : (
+                                    <span className="text-zinc-500">Search...</span>
+                                )}
                             </Button>
                         </PopoverTrigger>
                         <PopoverContent className="w-[300px] p-0">
@@ -310,7 +291,7 @@ export default function Employees() {
                                 className="rounded-lg border shadow-md"
                             >
                                 <CommandInput
-                                    placeholder="Type a command or search..."
+                                    placeholder="Search an employee or department..."
                                     value={searchQuery}
                                     onValueChange={handleSearchChange}
                                 />
@@ -328,10 +309,7 @@ export default function Employees() {
                                                     key={employee.id}
                                                     value={employee.value}
                                                     className="cursor-pointer"
-                                                    onSelect={(currentValue) => {
-                                                        setValue(currentValue === value ? "" : currentValue)
-                                                        setOpen(false)
-                                                    }}
+                                                    onSelect={(currentValue) => handleSelectEmployee(currentValue)}
                                                 >
                                                     {employee.name}
                                                     <Check
@@ -345,21 +323,16 @@ export default function Employees() {
                                         </CommandGroup>
                                     )}
 
-                                    {filteredItems.length > 0 && (
-                                        <CommandSeparator />
-                                    )}
+                                    <CommandSeparator />
 
-                                    {filteredItems.length > 0 && (
+                                    {filteredDepartmentsAndRoles.length > 0 && (
                                         <CommandGroup heading="Departments & Roles">
-                                            {filteredItems.slice(0, 3).map((items) => (
+                                            {filteredDepartmentsAndRoles.slice(0, 3).map((items) => (
                                                 <CommandItem
                                                     key={items.value}
                                                     value={items.value}
                                                     className="cursor-pointer"
-                                                    onSelect={(currentValue) => {
-                                                        setValue(currentValue === value ? "" : currentValue)
-                                                        setOpen(false)
-                                                    }}
+                                                    onSelect={(currentValue) => handleSelectDepOrRoles(currentValue)}
                                                 >
                                                     {items.label}
                                                     <Check
@@ -379,13 +352,22 @@ export default function Employees() {
                     <Button size="icon" className="bg-indigo-400 hover:bg-indigo-500">
                         <Plus className="stroke-zinc-50" />
                     </Button>
-                    <Button size="icon" variant="outline" className="hover:bg-gray-200">
+                    <Button
+                        size="icon"
+                        variant="outline"
+                        className="hover:bg-gray-200"
+                        onClick={handleReset}
+                    >
                         <Refresh className="stroke-zinc-800 w-4 h-4" />
                     </Button>
                 </div>
-            </div>
+            </div >
             <div className="w-full h-full py-6">
-                <h1 className="text-xl font-medium">All <span className="text-indigo-600">{employees.length}</span> Employees</h1>
+                <h1 className="text-xl font-medium">
+                    <span className="text-indigo-600">
+                        {selectedEmployees?.length}
+                    </span> Employees
+                </h1>
                 <div className="border-[1px] border-indigo-200 rounded-md my-4">
                     <div className="w-full flex justify-between items-center px-8 py-2 text-sm capitalize text-zinc-500">
                         <div className="w-1/6 text-start">name</div>
@@ -396,27 +378,8 @@ export default function Employees() {
                         <div className="w-1/6 text-start">department</div>
                     </div>
                     <Separator className="bg-indigo-200" />
-                    {employees.map((employee, index) => (
-                        <div key={employee.id} className="w-full">
-                            <div className="w-full flex justify-between items-center gap-x-2 py-4 relative px-8">
-                                <div className="w-1/6 text-start flex justify-start items-center gap-x-2 font-medium">
-                                    <Avatar className="h-9 w-9">
-                                        <AvatarImage src={employee.avatarUrl} />
-                                        <AvatarFallback>{`${employee.name.split(' ')[0].charAt(0)} ${employee.name.split(' ')[1].charAt(0)}`}</AvatarFallback>
-                                    </Avatar>
-                                    {employee.name}
-                                </div>
-                                <div className="w-1/5 text-start text-[15px] truncate">{employee.email}</div>
-                                <div className="w-1/6 text-start text-[15px] truncate">{employee.phone}</div>
-                                <div className="w-1/6 text-start text-[15px] truncate">{employee.role}</div>
-                                <div className="w-1/6 text-start text-[15px] truncate">{formatDate(employee.joinDate)}</div>
-                                <div className="w-1/6 text-start text-[15px] truncate">{employee.department}</div>
-                                <div className="absolute top-[50%] right-4 translate-y-[-50%]">
-                                    <Dots className="rotate-90 stroke-zinc-600 hover:stroke-zinc-700 cursor-pointer h-5 w-5" />
-                                </div>
-                            </div>
-                            <Separator className={index < employees.length - 1 ? 'bg-indigo-200' : 'hidden'} />
-                        </div>
+                    {selectedEmployees?.map((employee, index) => (
+                        <EmployeeRow key={index} employee={employee} />
                     ))}
                 </div>
             </div>
