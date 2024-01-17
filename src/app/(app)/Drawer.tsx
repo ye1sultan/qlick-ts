@@ -14,17 +14,14 @@ import Link from "next/link";
 import { FC } from "react";
 
 type User = {
-    fullName: string;
-    email: string;
-    avatarUrl: string;
+    user: {
+        fullName: string;
+        email: string;
+        avatarUrl: string;
+    }
 };
 
-type Drawer = {
-    user: User;
-    activeContent: string;
-};
-
-const Drawer: FC<Drawer> = ({ user, activeContent }) => {
+const Drawer: FC<User> = ({ user }) => {
     return (
         <div className="flex justify-center items-start py-4 px-4">
             <Sheet>
@@ -59,24 +56,24 @@ const Drawer: FC<Drawer> = ({ user, activeContent }) => {
                         <div className="w-full flex flex-col gap-y-1">
                             <SheetClose asChild>
                                 <Link
-                                 href="/overview"
-                                 className={`flex justify-start items-center w-full h-9 px-3 rounded-md ${activeContent === 'overview' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                                    href="/overview"
+                                    className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
                                     <Overview className="h-[20px] w-[20px] mr-2" />
                                     Overview
                                 </Link>
                             </SheetClose>
                             <SheetClose>
                                 <Link
-                                 href="/employees"
-                                 className={`flex justify-start items-center w-full h-9 px-3 rounded-md ${activeContent === 'employees' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                                    href="/employees"
+                                    className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
                                     <Employees className="h-[20px] w-[20px] mr-2" />
                                     Employees
                                 </Link>
                             </SheetClose>
                             <SheetClose>
                                 <Link
-                                 href="/records"
-                                 className={`flex justify-start items-center w-full h-9 px-3 rounded-md ${activeContent === 'gateRecords' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                                    href="/records"
+                                    className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
                                     <GateRecords className="h-[20px] w-[20px] mr-2" />
                                     Gate records
                                 </Link>
@@ -84,16 +81,16 @@ const Drawer: FC<Drawer> = ({ user, activeContent }) => {
                             <Separator className="my-1" />
                             <SheetClose >
                                 <Link
-                                 href="/profile"
-                                 className={`flex justify-start items-center w-full h-9 px-3 rounded-md ${activeContent === 'profile' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                                    href="/profile"
+                                    className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
                                     <Profile className="h-[20px] w-[20px] mr-2" />
                                     Profile
                                 </Link>
                             </SheetClose>
                             <SheetClose asChild>
                                 <Link
-                                 href="/notifications"
-                                 className={`flex justify-between items-center w-full h-9 px-3 rounded-md ${activeContent === 'notifications' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                                    href="/notifications"
+                                    className="flex justify-between items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
                                     <div className="flex">
                                         <Notifications className="h-[20px] w-[20px] mr-2" />
                                         Notifications
@@ -105,8 +102,8 @@ const Drawer: FC<Drawer> = ({ user, activeContent }) => {
                             <SheetFooter className="flex flex-col gap-y-1">
                                 <SheetClose asChild>
                                     <Link
-                                     href="/settings"
-                                     className={`flex justify-start items-center w-full h-9 px-3 rounded-md ${activeContent === 'settings' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                                        href="/settings"
+                                        className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
                                         <Settings className="h-[20px] w-[20px] mr-2" />
                                         Settings
                                     </Link>

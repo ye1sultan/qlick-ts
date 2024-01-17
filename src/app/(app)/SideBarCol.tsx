@@ -9,11 +9,7 @@ import {
 import Link from "next/link";
 import { FC } from "react";
 
-type SideBar = {
-    activeContent: string;
-};
-
-const SidebarCol: FC<SideBar> = ({ activeContent }) => (
+const SidebarCol: FC = () => (
     <div className="w-full h-full flex flex-col justify-between items-center">
         <div className="w-full flex flex-col justify-center items-center gap-y-1">
             <TooltipProvider delayDuration={0}>
@@ -21,7 +17,7 @@ const SidebarCol: FC<SideBar> = ({ activeContent }) => (
                     <TooltipTrigger asChild>
                         <Link
                             href="/overview"
-                            className={`flex justify-center items-center w-9 h-9 rounded-md ${activeContent === 'overview' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                            className="flex justify-center items-center w-9 h-9 rounded-md hover:bg-indigo-200">
                             <Overview className="h-[20px] w-[20px]" />
                         </Link>
                     </TooltipTrigger>
@@ -36,7 +32,7 @@ const SidebarCol: FC<SideBar> = ({ activeContent }) => (
                     <TooltipTrigger asChild>
                         <Link
                             href="/employees"
-                            className={`flex justify-center items-center w-9 h-9 rounded-md ${activeContent === 'employees' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                            className="flex justify-center items-center w-9 h-9 rounded-md hover:bg-indigo-200">
                             <Employees className="h-[20px] w-[20px]" />
                         </Link>
                     </TooltipTrigger>
@@ -51,7 +47,7 @@ const SidebarCol: FC<SideBar> = ({ activeContent }) => (
                     <TooltipTrigger asChild>
                         <Link
                             href="/records"
-                            className={`flex justify-center items-center w-9 h-9 rounded-md ${activeContent === 'gateRecords' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                            className="flex justify-center items-center w-9 h-9 rounded-md hover:bg-indigo-200">
                             <GateRecords className="h-[20px] w-[20px]" />
                         </Link>
                     </TooltipTrigger>
@@ -68,7 +64,7 @@ const SidebarCol: FC<SideBar> = ({ activeContent }) => (
                     <TooltipTrigger asChild>
                         <Link
                             href="/profile"
-                            className={`flex justify-center items-center w-9 h-9 rounded-md ${activeContent === 'profile' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                            className="flex justify-center items-center w-9 h-9 rounded-md hover:bg-indigo-200">
                             <Profile className="h-[20px] w-[20px]" />
                         </Link>
                     </TooltipTrigger>
@@ -82,7 +78,7 @@ const SidebarCol: FC<SideBar> = ({ activeContent }) => (
                     <TooltipTrigger asChild>
                         <Link
                             href="/notifications"
-                            className={`flex justify-center items-center w-9 h-9 rounded-md ${activeContent === 'notifications' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                            className="flex justify-center items-center w-9 h-9 rounded-md hover:bg-indigo-200">
                             <Notifications className="h-[20px] w-[20px]" />
                         </Link>
                     </TooltipTrigger>
@@ -102,7 +98,7 @@ const SidebarCol: FC<SideBar> = ({ activeContent }) => (
                     <TooltipTrigger asChild>
                         <Link
                             href="/settings"
-                            className={`flex justify-center items-center w-9 h-9 rounded-md ${activeContent === 'settings' ? 'bg-indigo-200' : 'hover:bg-indigo-200'}`}>
+                            className="flex justify-center items-center w-9 h-9 rounded-md hover:bg-indigo-200">
                             <Settings className="h-[20px] w-[20px]" />
                         </Link>
                     </TooltipTrigger>
@@ -115,7 +111,7 @@ const SidebarCol: FC<SideBar> = ({ activeContent }) => (
             <TooltipProvider delayDuration={0}>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <button className={`flex justify-center items-center w-9 h-9 rounded-md text-red-500 hover:bg-indigo-200`}>
+                        <button className="flex justify-center items-center w-9 h-9 rounded-md text-red-500 hover:bg-indigo-200">
                             <Exit className="h-[20px] w-[20px]" color="red" />
                         </button>
                     </TooltipTrigger>

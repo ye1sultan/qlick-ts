@@ -33,7 +33,6 @@ export default function AppLayout({
 }) {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
     const [leftSide, setLeftSide] = useState<boolean>(false);
-    const [activeContent, setActiveContent] = useState<string>('overview');
 
     useEffect(() => {
         const handleResize = (): void => {
@@ -69,13 +68,13 @@ export default function AppLayout({
                             <>
                                 <UserPaneExp user={user} />
                                 <Separator className="my-3" />
-                                <SidebarExp activeContent={activeContent} />
+                                <SidebarExp />
                             </>
                         ) : (
                             <>
                                 <UserPaneCol user={user} />
                                 <Separator className="my-3" />
-                                <SidebarCol activeContent={activeContent} />
+                                <SidebarCol />
                             </>
                         )}
                     </div>
@@ -98,7 +97,7 @@ export default function AppLayout({
                             </div>
                             <div className="flex justify-center items-center">
                                 <Search className="w-6 h-6 cursor-pointer" />
-                                <Drawer user={user} activeContent={activeContent} />
+                                <Drawer user={user} />
                             </div>
                         </div>
                         <div className="w-full h-full px-4 md:px-10 pt-10 mb-6">

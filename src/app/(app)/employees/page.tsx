@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Plus, Refresh, Search, Suitcase, UserAvatar, UserNotFound } from "@/components/svgs/Icons";
+import { Check, Plus, Refresh, Search, UserNotFound } from "@/components/svgs/Icons";
 import { Button } from "@/components/ui/button";
 import {
     Command,
@@ -17,10 +17,10 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { Heading } from "../components/Heading";
 import EmployeeRow from "./Employee";
+import { Badge } from "@/components/ui/badge"
 
 interface Employee {
     id: number;
@@ -125,7 +125,7 @@ const employees: Employee[] = [
         label: "David Lee",
         email: "david.lee@example.com",
         phone: "678-901-2345",
-        role: "Recourcer",
+        role: "Product Manager",
         roleValue: "product_manager",
         joinDate: "2020-02-19",
         department: "Product",
@@ -139,7 +139,7 @@ const employees: Employee[] = [
         label: "Linda Garcia",
         email: "linda.garcia@example.com",
         phone: "789-012-3456",
-        role: "Recourcer",
+        role: "Quality Analyst",
         roleValue: "quality_analyst",
         joinDate: "2021-07-30",
         department: "Quality Assurance",
@@ -217,6 +217,7 @@ export default function Employees() {
     const [selectedEmployees, setSelectedEmployees] = useState<Employee[] | null>(employees);
 
     const [departments, roles] = createDepartmentsRolesArrays(employees);
+    const [selectedType, setSelectedType] = useState<string>("");
 
     const handleSearchChange = (newValue: string): void => {
         setSearchQuery(newValue || '');
@@ -237,30 +238,33 @@ export default function Employees() {
 
         setValue(currentValue === value ? "" : currentValue);
         setOpen(false);
+        setSelectedType("employee");
     };
 
-    const handleSelectDepOrRoles = (currentValue: string): void => {
+    const handleSelectDepOrRoles = (currentValue: string, type: string): void => {
         if (currentValue) {
             const filteredDepartments = employees.filter(e => e.departmentValue === currentValue);
             const filteredRoles = employees.filter(e => e.roleValue === currentValue);
-            console.log([...filteredDepartments, ...filteredRoles]);
+
             setSelectedEmployees([...filteredDepartments, ...filteredRoles])
         } else {
             setSelectedEmployees(employees);
         }
 
-        console.log(currentValue);
         setValue(currentValue === value ? "" : currentValue);
         setOpen(false);
+        setSelectedType(type);
     }
 
     const filteredEmployees = employees.filter((employee) =>
         employee.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
-    const filteredDepartmentsAndRoles = [...departments, ...roles].filter((employee) =>
-        employee.label.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredDepartmentsAndRoles = [
+        ...departments.map((d) => ({ ...d, type: 'department' })),
+        ...roles.map((r) => ({ ...r, type: 'role' }))
+    ].filter((item) => item.label.toLowerCase().includes(searchQuery.toLowerCase()));
+
 
     return (
         <>
@@ -269,24 +273,28 @@ export default function Employees() {
                 <Separator />
             </div>
             <div className="w-full flex flex-row justify-start items-center gap-y-2 sm:pr-4">
-                <div className="flex flex-row justify-start items-center gap-x-2">
+                <div className="w-full flex flex-col sm:flex-row justify-center items-start sm:justify-start sm:items-center gap-2">
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
                                 role="combobox"
                                 aria-expanded={open}
-                                className="w-[300px] flex justify-start items-center gap-x-2"
+                                className="max-w-[300px] w-full flex justify-start items-center gap-x-2"
                             >
                                 <Search className="stroke-zinc-500 h-4 w-4" />
                                 {value ? (
-                                    selectedEmployees?.find((item) => item.value === value)?.label
+                                    selectedType === 'employee'
+                                        ? selectedEmployees?.find((item) => item.value === value)?.label
+                                        : selectedType === 'department'
+                                            ? departments.find((item) => item.value === value)?.label
+                                            : roles.find((item) => item.value === value)?.label
                                 ) : (
                                     <span className="text-zinc-500">Search...</span>
                                 )}
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[300px] p-0">
+                        <PopoverContent className="p-0">
                             <Command
                                 className="rounded-lg border shadow-md"
                             >
@@ -312,12 +320,6 @@ export default function Employees() {
                                                     onSelect={(currentValue) => handleSelectEmployee(currentValue)}
                                                 >
                                                     {employee.name}
-                                                    <Check
-                                                        className={cn(
-                                                            "ml-auto h-4 w-4",
-                                                            value === employee.value ? "opacity-100" : "opacity-0"
-                                                        )}
-                                                    />
                                                 </CommandItem>
                                             ))}
                                         </CommandGroup>
@@ -331,16 +333,11 @@ export default function Employees() {
                                                 <CommandItem
                                                     key={items.value}
                                                     value={items.value}
-                                                    className="cursor-pointer"
-                                                    onSelect={(currentValue) => handleSelectDepOrRoles(currentValue)}
+                                                    className="cursor-pointer flex justify-between items-center w-full"
+                                                    onSelect={() => handleSelectDepOrRoles(items.value, items.type)}
                                                 >
                                                     {items.label}
-                                                    <Check
-                                                        className={cn(
-                                                            "ml-auto h-4 w-4",
-                                                            value === items.value ? "opacity-100" : "opacity-0"
-                                                        )}
-                                                    />
+                                                    <Badge variant="outline" className="font-medium">{items.type}</Badge>
                                                 </CommandItem>
                                             ))}
                                         </CommandGroup>
@@ -349,17 +346,19 @@ export default function Employees() {
                             </Command>
                         </PopoverContent>
                     </Popover>
-                    <Button size="icon" className="bg-indigo-400 hover:bg-indigo-500">
-                        <Plus className="stroke-zinc-50" />
-                    </Button>
-                    <Button
-                        size="icon"
-                        variant="outline"
-                        className="hover:bg-gray-200"
-                        onClick={handleReset}
-                    >
-                        <Refresh className="stroke-zinc-800 w-4 h-4" />
-                    </Button>
+                    <div className="w-full flex justify-start sm:justify-end items-center gap-2">
+                        <Button size="icon" className="bg-indigo-400 hover:bg-indigo-500">
+                            <Plus className="stroke-zinc-50" />
+                        </Button>
+                        <Button
+                            size="icon"
+                            variant="outline"
+                            className="hover:bg-gray-200"
+                            onClick={handleReset}
+                        >
+                            <Refresh className="stroke-zinc-800 w-4 h-4" />
+                        </Button>
+                    </div>
                 </div>
             </div >
             <div className="w-full h-full py-6">
@@ -368,20 +367,44 @@ export default function Employees() {
                         {selectedEmployees?.length}
                     </span> Employees
                 </h1>
-                <div className="border-[1px] border-indigo-200 rounded-md my-4">
+                <div className="hidden lg:block border-[1px] border-indigo-200 rounded-md my-4">
                     <div className="w-full flex justify-between items-center px-8 py-2 text-sm capitalize text-zinc-500">
-                        <div className="w-1/6 text-start">name</div>
-                        <div className="w-1/5 text-start">email</div>
-                        <div className="w-1/6 text-start">phone</div>
-                        <div className="w-1/6 text-start">role</div>
-                        <div className="w-1/6 text-start">join date</div>
-                        <div className="w-1/6 text-start">department</div>
+                        <div className="w-1/4 xl:w-1/5 text-start">name</div>
+                        <div className="w-1/4 xl:w-1/5 text-start">email</div>
+                        <div className="w-1/5 xl:w-1/6 text-start">phone</div>
+                        <div className="w-1/5 xl:w-1/6 text-start">role</div>
+                        <div className="hidden xl:block w-1/6 text-start">join date</div>
+                        <div className="w-1/5 xl:w-1/6 text-start">department</div>
                     </div>
                     <Separator className="bg-indigo-200" />
                     {selectedEmployees?.map((employee, index) => (
                         <EmployeeRow key={index} employee={employee} />
                     ))}
                 </div>
+                {/* {!value && (
+                    <Pagination>
+                        <PaginationContent>
+                            <PaginationItem>
+                                <PaginationPrevious href="#" />
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#" isActive>1</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">2</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                                <PaginationLink href="#">3</PaginationLink>
+                            </PaginationItem>
+                            <PaginationItem>
+                            <PaginationEllipsis />
+                        </PaginationItem>
+                            <PaginationItem>
+                                <PaginationNext href="#" />
+                            </PaginationItem>
+                        </PaginationContent>
+                    </Pagination>
+                )} */}
             </div>
         </>
     );
