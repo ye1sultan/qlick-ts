@@ -367,11 +367,11 @@ export default function Employees() {
                         {selectedEmployees?.length}
                     </span> Employees
                 </h1>
-                <div className="hidden lg:block border-[1px] border-indigo-200 rounded-md my-4">
+                <div className="hidden md:block border-[1px] border-indigo-200 rounded-md my-4">
                     <div className="w-full flex justify-between items-center px-8 py-2 text-sm capitalize text-zinc-500">
                         <div className="w-1/4 xl:w-1/5 text-start">name</div>
-                        <div className="w-1/4 xl:w-1/5 text-start">email</div>
-                        <div className="w-1/5 xl:w-1/6 text-start">phone</div>
+                        <div className="w-1/4 text-start">email</div>
+                        <div className="hidden lg:block w-1/5 xl:w-1/6 text-start">phone</div>
                         <div className="w-1/5 xl:w-1/6 text-start">role</div>
                         <div className="hidden xl:block w-1/6 text-start">join date</div>
                         <div className="w-1/5 xl:w-1/6 text-start">department</div>
@@ -381,30 +381,13 @@ export default function Employees() {
                         <EmployeeRow key={index} employee={employee} />
                     ))}
                 </div>
-                {/* {!value && (
-                    <Pagination>
-                        <PaginationContent>
-                            <PaginationItem>
-                                <PaginationPrevious href="#" />
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#" isActive>1</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">2</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                                <PaginationLink href="#">3</PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                            <PaginationEllipsis />
-                        </PaginationItem>
-                            <PaginationItem>
-                                <PaginationNext href="#" />
-                            </PaginationItem>
-                        </PaginationContent>
-                    </Pagination>
-                )} */}
+                <div className="md:hidden block border-[1px] border-indigo-200 rounded-md my-4">
+                    {selectedEmployees?.map((employee, index) => (
+                        <>
+                            d
+                        </>
+                    ))}
+                </div>
             </div>
         </>
     );
