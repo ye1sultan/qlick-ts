@@ -16,6 +16,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { SadEmoji } from "@/components/svgs/Icons";
 import { MouseEvent } from "react";
 import { redirect, useRouter } from 'next/navigation';
+import { AuthHeader } from "../components/Header";
 
 type LoginFormFields = {
     email: string;
@@ -54,7 +55,7 @@ export default function Login() {
 
     return (
         <>
-            <h1 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-normal first:mt-0 self-start mb-8">Welcome back!</h1>
+            <AuthHeader text="Welcome back!" />
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
