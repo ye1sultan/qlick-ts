@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { SadEmoji } from "@/components/svgs/Icons";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import { redirect, useRouter } from 'next/navigation';
 import { AuthHeader } from "../components/Header";
 
@@ -26,6 +26,8 @@ type LoginFormFields = {
 export default function Login() {
     const { toast } = useToast();
     const router = useRouter();
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
 
     const form = useForm<LoginFormFields>({
         defaultValues: {
@@ -65,10 +67,19 @@ export default function Login() {
                         control={form.control}
                         name="email"
                         render={({ field }) => (
-                            <FormItem className="relative group focus:border-none">
-                                <FormLabel className="absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 group-focus-within:text-[14px] transition-all ease-in-out duration-300">Email</FormLabel>
+                            <FormItem className="relative group">
+                                <FormLabel className={`absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 transition-all ease-in-out duration-300 ${email ? "top-0 left-2 px-2" : ""}`}>Email</FormLabel>
                                 <FormControl>
-                                    <Input {...field} />
+                                    <Input
+                                        data-testid="email"
+                                        type="email"
+                                        {...field}
+                                        value={email}
+                                        onChange={(e) => {
+                                            setEmail(e.target.value);
+                                            field.onChange(e);
+                                        }}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -80,9 +91,18 @@ export default function Login() {
                         name="password"
                         render={({ field }) => (
                             <FormItem className="relative group">
-                                <FormLabel className="absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 group-focus-within:text-[14px] transition-all ease-in-out duration-300">Password</FormLabel>
+                                <FormLabel className={`absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 group-focus-within:text-[14px] transition-all ease-in-out duration-300 ${password ? "top-0 left-2 px-2" : ""}`}>Password</FormLabel>
                                 <FormControl>
-                                    <Input {...field} />
+                                    <Input
+                                        data-testid="password"
+                                        type="password"
+                                        {...field}
+                                        value={password}
+                                        onChange={(e) => {
+                                            setPassword(e.target.value);
+                                            field.onChange(e);
+                                        }}
+                                    />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -103,7 +123,7 @@ export default function Login() {
 
                     <Button type="submit" className="w-full bg-indigo-500 hover:bg-indigo-600">Login</Button>
                 </form>
-            </Form>
+            </Form >
         </>
     );
 }
