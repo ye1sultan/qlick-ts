@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AuthHeader } from "../components/Header";
 
@@ -30,6 +30,7 @@ type ForgotFormFields = {
 export default function ForgotPassword() {
     const { toast } = useToast();
     const router = useRouter();
+    const [email, setEmail] = useState<string>("");
 
     const form = useForm<ForgotFormFields>({
         resolver: zodResolver(schema),
@@ -63,21 +64,26 @@ export default function ForgotPassword() {
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-4 w-full"
                 >
+
                     <FormField
                         control={form.control}
                         name="email"
                         render={({ field, fieldState }) => (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
+                            <FormItem className="relative group">
+                                <FormLabel className={`absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 transition-all ease-in-out duration-300 ${email ? "top-0 left-2 px-2" : ""}`}>Email</FormLabel>
                                 <FormControl>
                                     <Input
-                                        placeholder="worker123@example.com"
+                                        data-testid="email"
+                                        type="email"
                                         {...field}
+                                        value={email}
+                                        onChange={(e) => {
+                                            setEmail(e.target.value);
+                                            field.onChange(e);
+                                        }}
                                     />
                                 </FormControl>
-                                {fieldState.error && (
-                                    <FormMessage>{fieldState.error.message}</FormMessage>
-                                )}
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
