@@ -65,13 +65,10 @@ export default function Login() {
                         control={form.control}
                         name="email"
                         render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
+                            <FormItem className="relative group focus:border-none">
+                                <FormLabel className="absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 group-focus-within:text-[14px] transition-all ease-in-out duration-300">Email</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        placeholder="worker123@example.com"
-                                        {...field}
-                                    />
+                                    <Input {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -82,14 +79,10 @@ export default function Login() {
                         control={form.control}
                         name="password"
                         render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Password</FormLabel>
+                            <FormItem className="relative group">
+                                <FormLabel className="absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 group-focus-within:text-[14px] transition-all ease-in-out duration-300">Password</FormLabel>
                                 <FormControl>
-                                    <Input
-                                        type="password"
-                                        placeholder="********"
-                                        {...field}
-                                    />
+                                    <Input {...field} />
                                 </FormControl>
                                 <FormMessage />
                             </FormItem>
@@ -100,7 +93,7 @@ export default function Login() {
                         <Button
                             variant="link"
                             size="default"
-                            className="ml-auto p-0 flex justify-center items-center gap-x-2"
+                            className="ml-auto p-0 flex justify-center items-center gap-x-2 px-2"
                             onClick={(e) => forgotHandle(e)}
                         >
                             Forgot password?
