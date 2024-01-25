@@ -25,7 +25,7 @@ type LoginFormFields = {
 
 export default function Login() {
     const { toast } = useToast();
-    const router = useRouter();
+
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
@@ -38,9 +38,6 @@ export default function Login() {
 
     const forgotHandle = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-
-        console.log("Forgot button pressed!");
-        router.push("/forgot-password");
     }
 
     const onSubmit: SubmitHandler<LoginFormFields> = (values) => {
@@ -71,7 +68,7 @@ export default function Login() {
                                 <FormLabel className={`absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 transition-all ease-in-out duration-300 ${email ? "top-0 left-2 px-2" : ""}`}>Email</FormLabel>
                                 <FormControl>
                                     <Input
-                                        data-testid="email"
+                                        data-testid="email-input"
                                         type="email"
                                         {...field}
                                         value={email}
@@ -94,7 +91,7 @@ export default function Login() {
                                 <FormLabel className={`absolute top-[50%] bg-white left-4 translate-y-[-50%] text-zinc-500 group-focus-within:top-0 group-focus-within:left-2 group-focus-within:px-2 group-focus-within:text-[14px] transition-all ease-in-out duration-300 ${password ? "top-0 left-2 px-2" : ""}`}>Password</FormLabel>
                                 <FormControl>
                                     <Input
-                                        data-testid="password"
+                                        data-testid="password-input"
                                         type="password"
                                         {...field}
                                         value={password}
