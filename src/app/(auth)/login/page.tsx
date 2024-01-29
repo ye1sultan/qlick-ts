@@ -15,7 +15,6 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { SadEmoji } from "@/components/svgs/Icons";
 import { MouseEvent, useState } from "react";
-import { redirect, useRouter } from 'next/navigation';
 import { AuthHeader } from "../components/Header";
 
 type LoginFormFields = {
