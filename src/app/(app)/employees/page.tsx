@@ -206,10 +206,11 @@ export default function Employees() {
                 </div>
             </div >
             <div className="w-full h-full py-6">
-                <h1 className="text-xl font-medium">
-                    <span className="text-indigo-600">
+                <h1 className="text-xl font-medium flex justify-start items-center gap-x-2">
+                    <span data-testid="employee-count" className="text-indigo-600">
                         {selectedEmployees?.length}
-                    </span> Employees
+                    </span>
+                    <span data-testid="employee-heading">Employees</span>
                 </h1>
                 <div className="hidden md:block border-[1px] border-indigo-200 rounded-md my-4">
                     <div className="w-full flex justify-between items-center px-8 py-2 text-sm capitalize text-zinc-500">
