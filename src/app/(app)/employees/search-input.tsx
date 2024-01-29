@@ -50,6 +50,7 @@ export const SearchInput: FC<SearchInputProps> = ({ employees, value, setValue, 
 
     const handleSearchChange = (newValue: string): void => {
         setSearchQuery(newValue || '');
+        console.log(newValue);
     };
 
     const handleSelectEmployee = (currentValue: string): void => {
@@ -118,6 +119,7 @@ export const SearchInput: FC<SearchInputProps> = ({ employees, value, setValue, 
                         placeholder="Search an employee or department..."
                         value={searchQuery}
                         onValueChange={handleSearchChange}
+                        data-testid="search-input"
                     />
                     <CommandList>
                         <CommandEmpty>
