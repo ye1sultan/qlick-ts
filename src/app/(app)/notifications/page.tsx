@@ -1,21 +1,20 @@
-"use client";
+'use client';
 
-import { Separator } from "@/components/ui/separator";
-import { Heading } from "../components/Heading";
+import { Separator } from '@/components/ui/separator';
+import { Heading } from '../components/Heading';
 
 export default function Notifications() {
-    return (
-        <>
-            <div className="space-y-6 pb-4 block">
-                <Heading heading={"Notifications"} subHeading={"Your alert and message settings."} />
-                <Separator />
-            </div>
-            <div className="w-full flex flex-col md:flex-row items-start justify-between md:items-center gap-y-2 gap-x-2 sm:pr-4">
-
-            </div>
-            <div className="w-full">
-
-            </div>
-        </>
-    );
+	return (
+		<>
+			<div className="block space-y-6 pb-4">
+				<Heading
+					heading={'Notifications'}
+					subHeading={'Your alert and message settings.'}
+				/>
+				<Separator />
+			</div>
+			<div className="md:flex-row md:items-center sm:pr-4 flex w-full flex-col items-start justify-between gap-x-2 gap-y-2"></div>
+			<div className="w-full"></div>
+		</>
+	);
 }

@@ -1,29 +1,39 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toast } from "@radix-ui/react-toast";
-import { Quicksand } from "next/font/google";
+import { Toaster } from '@/components/ui/toaster';
+import { Quicksand } from 'next/font/google';
+import Image from 'next/image';
 
 const quick = Quicksand({ subsets: ['latin'] });
 
 export default function AuthLayout({
 	children,
 }: {
-	children: React.ReactNode
+	children: React.ReactNode;
 }) {
 	return (
 		<>
 			<Toaster />
-			<div className="w-full h-screen flex flex-row justify-center relative">
-				<div className="w-full md:w-[60%] lg:w-[40%] flex justify-center items-center">
-					<h1 className={`absolute top-8 left-0 md:left-8 ml-4 text-3xl font-black ${quick.className} ${quick.style.fontWeight}`}>QLICK</h1>
-					<div className="max-w-[350px] w-full mx-4 flex flex-col justify-center items-center">
+			<div className="relative flex h-screen w-full flex-row justify-center">
+				<div className="md:w-[60%] lg:w-[40%] flex w-full items-center justify-center">
+					<h1
+						className={`md:left-8 text-3xl font-black absolute left-0 top-8 ml-4 ${quick.className} ${quick.style.fontWeight}`}
+					>
+						QLICK
+					</h1>
+					<div className="mx-4 flex w-full max-w-[350px] flex-col items-center justify-center">
 						{children}
 					</div>
 				</div>
 
-				<div className="w-[50%] lg:w-[60%] hidden md:flex">
-					<img src="https://picsum.photos/1920/1080" className="h-full w-full object-cover object-center" alt="Login page" />
+				<div className="lg:w-[60%] md:flex hidden w-[50%]">
+					<Image
+						src="https://picsum.photos/1920/1080"
+						className="h-full w-full object-cover object-center"
+						alt="Login page"
+						width={1920}
+						height={1080}
+					/>
 				</div>
 			</div>
 		</>
-	)
+	);
 }

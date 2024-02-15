@@ -1,72 +1,76 @@
 import {
-    Employees,
-    Exit,
-    GateRecords,
-    Notifications,
-    Overview,
-    Profile,
-    Settings
-} from "@/components/svgs/Icons";
-import { Separator } from "@/components/ui/separator";
-import Link from "next/link";
-import { FC } from "react";
+	Employees,
+	Exit,
+	GateRecords,
+	Notifications,
+	Overview,
+	Profile,
+	Settings,
+} from '@/components/svgs/Icons';
+import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
+import { FC } from 'react';
 
 const SidebarExp: FC = () => (
-    <div
-        className="w-full h-full flex flex-col justify-between items-center px-2 text-nowrap">
-        <div className="w-full flex flex-col gap-y-1">
-            <Link
-                href="/overview"
-                className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
-                <Overview className="h-[20px] w-[20px] mr-2" />
-                Overview
-            </Link>
-            <Link
-                href="/employees"
-                className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
-                <Employees className="h-[20px] w-[20px] mr-2" />
-                Employees
-            </Link>
-            <Link
-                href="/records"
-                className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
-                <GateRecords className="h-[20px] w-[20px] mr-2" />
-                Gate records
-            </Link>
-            <Separator className="my-1" />
-            <Link
-                href="/profile"
-                className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
-                <Profile className="h-[20px] w-[20px] mr-2" />
-                Profile
-            </Link>
-            <Link
-                href="/notifications"
-                className="flex justify-between items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
-                <div className="flex">
-                    <Notifications className="h-[20px] w-[20px] mr-2" />
-                    Notifications
-                </div>
-                <p className="text-sm pr-1">4</p>
-            </Link>
-        </div>
+	<div className="flex h-full w-full flex-col items-center justify-between text-nowrap px-2">
+		<div className="flex w-full flex-col gap-y-1">
+			<Link
+				href="/overview"
+				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+			>
+				<Overview className="mr-2 h-[20px] w-[20px]" />
+				Overview
+			</Link>
+			<Link
+				href="/employees"
+				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+			>
+				<Employees className="mr-2 h-[20px] w-[20px]" />
+				Employees
+			</Link>
+			<Link
+				href="/records"
+				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+			>
+				<GateRecords className="mr-2 h-[20px] w-[20px]" />
+				Gate records
+			</Link>
+			<Separator className="my-1" />
+			<Link
+				href="/profile"
+				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+			>
+				<Profile className="mr-2 h-[20px] w-[20px]" />
+				Profile
+			</Link>
+			<Link
+				href="/notifications"
+				className="rounded-md flex h-9 w-full items-center justify-between px-3 hover:bg-indigo-200"
+			>
+				<div className="flex">
+					<Notifications className="mr-2 h-[20px] w-[20px]" />
+					Notifications
+				</div>
+				<p className="text-sm pr-1">4</p>
+			</Link>
+		</div>
 
-        <div className="w-full flex flex-col gap-y-1">
-            <Separator className="my-1" />
+		<div className="flex w-full flex-col gap-y-1">
+			<Separator className="my-1" />
 
-            <Link
-                href="/settings"
-                className="flex justify-start items-center w-full h-9 px-3 rounded-md hover:bg-indigo-200">
-                <Settings className="h-[20px] w-[20px] mr-2" />
-                Settings
-            </Link>
-            <button
-                className="flex justify-start items-center w-full h-9 px-3 rounded-md text-red-500 hover:bg-indigo-200">
-                <Exit className="h-[20px] w-[20px] mr-2" />
-                Exit
-            </button>
-        </div>
-    </div>
+			<Link
+				href="/settings"
+				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+			>
+				<Settings className="mr-2 h-[20px] w-[20px]" />
+				Settings
+			</Link>
+			<button className="rounded-md flex h-9 w-full items-center justify-start px-3 text-red-500 hover:bg-indigo-200">
+				<Exit className="mr-2 h-[20px] w-[20px]" />
+				Exit
+			</button>
+		</div>
+	</div>
 );
 
 export default SidebarExp;
