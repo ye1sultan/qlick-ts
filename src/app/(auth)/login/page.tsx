@@ -1,7 +1,5 @@
 'use client';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
-
 import { SadEmoji } from '@/components/svgs/Icons';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,13 +7,15 @@ import {
 	FormControl,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
-import { MouseEvent, useState } from 'react';
-import { AuthHeader } from '../components/Header';
+import Link from 'next/link';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { AuthHeader } from '../components/heading';
+import { Label } from '../components/label';
 
 type LoginFormFields = {
 	email: string;
@@ -34,10 +34,6 @@ export default function Login() {
 			password: '',
 		},
 	});
-
-	const forgotHandle = (e: MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-	};
 
 	const onSubmit: SubmitHandler<LoginFormFields> = (values) => {
 		console.log(values);
@@ -67,14 +63,9 @@ export default function Login() {
 						name="email"
 						render={({ field }) => (
 							<FormItem className="group relative">
-								<FormLabel
-									className={`text-zinc-500 absolute left-4 top-[50%] translate-y-[-50%] bg-white transition-all duration-300 ease-in-out group-focus-within:left-2 group-focus-within:top-0 group-focus-within:px-2 ${email ? 'left-2 top-0 px-2' : ''}`}
-								>
-									Email
-								</FormLabel>
+								<Label text="Email" fill={email} />
 								<FormControl>
 									<Input
-										data-testid="email-input"
 										type="email"
 										{...field}
 										value={email}
@@ -94,14 +85,9 @@ export default function Login() {
 						name="password"
 						render={({ field }) => (
 							<FormItem className="group relative">
-								<FormLabel
-									className={`text-zinc-500 absolute left-4 top-[50%] translate-y-[-50%] bg-white transition-all duration-300 ease-in-out group-focus-within:left-2 group-focus-within:top-0 group-focus-within:px-2 group-focus-within:text-[14px] ${password ? 'left-2 top-0 px-2' : ''}`}
-								>
-									Password
-								</FormLabel>
+								<Label text="Password" fill={password} />
 								<FormControl>
 									<Input
-										data-testid="password-input"
 										type="password"
 										{...field}
 										value={password}
@@ -116,21 +102,19 @@ export default function Login() {
 						)}
 					/>
 
-					<div className="flex w-full">
-						<Button
-							variant="link"
-							size="default"
-							className="ml-auto flex items-center justify-center gap-x-2 p-0 px-2"
-							onClick={(e) => forgotHandle(e)}
+					<div className="flex w-full justify-end">
+						<Link
+							href="/forgot-password"
+							className="flex items-center p-0 px-2 text-sm"
 						>
 							Forgot password?
-							<SadEmoji className="h-5 w-5" />
-						</Button>
+							<SadEmoji className="ml-1 h-5 w-5" />
+						</Link>
 					</div>
 
 					<Button
 						type="submit"
-						className="bg-indigo-500 w-full hover:bg-indigo-600"
+						className="w-full bg-indigo-500 hover:bg-indigo-600"
 					>
 						Login
 					</Button>

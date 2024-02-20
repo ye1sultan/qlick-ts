@@ -1,26 +1,25 @@
 'use client';
 
-import { SubmitHandler, useForm } from 'react-hook-form';
-
 import { Button } from '@/components/ui/button';
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/components/ui/use-toast';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'next/navigation';
-import { MouseEvent, useState } from 'react';
+import Link from 'next/link';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { AuthHeader } from '../components/Header';
+import { AuthHeader } from '../components/heading';
+import { Label } from '../components/label';
 
 const schema = z.object({
-	email: z.string().email('Invalid email format').nonempty('Email is required'),
+	email: z.string().email('Invalid email format').min(5),
 });
 
 type ForgotFormFields = {
@@ -29,7 +28,7 @@ type ForgotFormFields = {
 
 export default function ForgotPassword() {
 	const { toast } = useToast();
-	const router = useRouter();
+
 	const [email, setEmail] = useState<string>('');
 
 	const form = useForm<ForgotFormFields>({
@@ -39,16 +38,7 @@ export default function ForgotPassword() {
 		},
 	});
 
-	const handleBackToLogin = (e: MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-		console.log('Redirecting to login!');
-
-		router.push('/login');
-	};
-
 	const onSubmit: SubmitHandler<ForgotFormFields> = (values) => {
-		console.log(values);
-
 		toast({
 			variant: 'default',
 			title: 'Check your email!',
@@ -68,13 +58,9 @@ export default function ForgotPassword() {
 					<FormField
 						control={form.control}
 						name="email"
-						render={({ field, fieldState }) => (
+						render={({ field }) => (
 							<FormItem className="group relative">
-								<FormLabel
-									className={`text-zinc-500 absolute left-4 top-[50%] translate-y-[-50%] bg-white transition-all duration-300 ease-in-out group-focus-within:left-2 group-focus-within:top-0 group-focus-within:px-2 ${email ? 'left-2 top-0 px-2' : ''}`}
-								>
-									Email
-								</FormLabel>
+								<Label text="Email" fill={email} />
 								<FormControl>
 									<Input
 										data-testid="email"
@@ -94,17 +80,20 @@ export default function ForgotPassword() {
 
 					<Button
 						type="submit"
-						className="bg-indigo-500 w-full hover:bg-indigo-600"
+						className="w-full bg-indigo-500 hover:bg-indigo-600"
 					>
 						Reset Password
 					</Button>
+
 					<Button
 						type="button"
 						variant="secondary"
-						className="mt-4 w-full "
-						onClick={(e) => handleBackToLogin(e)}
+						className="mt-4 w-full"
+						asChild
 					>
-						Back to Login
+						<Link className="w-full" href="/login">
+							Back to login
+						</Link>
 					</Button>
 				</form>
 			</Form>
