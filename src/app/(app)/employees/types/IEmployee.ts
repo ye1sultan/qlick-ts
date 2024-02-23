@@ -7,7 +7,6 @@ export interface Employee {
 	phone: string;
 	role: string;
 	roleValue: string;
-	joinDate: string;
 	department: string;
 	departmentValue: string;
 	avatarUrl: string;

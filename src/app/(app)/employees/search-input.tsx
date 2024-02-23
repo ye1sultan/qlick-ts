@@ -16,29 +16,15 @@ import {
 	PopoverTrigger,
 } from '@/components/ui/popover';
 import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { Employee } from './types/IEmployee';
 import { createDepartmentsRolesArrays } from './utils/createDepartmentsRoles';
-
-interface Employee {
-	id: number;
-	name: string;
-	value: string;
-	label: string;
-	email: string;
-	phone: string;
-	role: string;
-	roleValue: string;
-	joinDate: string;
-	department: string;
-	departmentValue: string;
-	avatarUrl: string;
-}
 
 type SearchInputProps = {
 	employees: Employee[];
 	value: string;
 	setValue: Dispatch<SetStateAction<string>>;
 	selectedEmployees: Employee[] | null;
-	setSelectedEmployees: Dispatch<SetStateAction<Employee[] | null>>;
+	setSelectedEmployees: Dispatch<SetStateAction<Employee[] | []>>;
 };
 
 export const SearchInput: FC<SearchInputProps> = ({
