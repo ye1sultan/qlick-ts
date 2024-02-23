@@ -11,10 +11,7 @@ const EmployeeRow: FC<{ employee: Employee }> = ({ employee }) => {
 	const [open, setOpen] = useState<boolean>(false);
 
 	return (
-		<div
-			data-testid="employee-row"
-			className="relative flex w-full items-center justify-between px-8 py-4"
-		>
+		<div className="relative flex w-full items-center justify-between px-8 py-4">
 			<div className="flex w-1/4 items-center justify-start gap-x-2 text-start font-medium xl:w-1/5">
 				<Avatar className="h-9 w-9">
 					<AvatarImage src={employee.avatarUrl} />
