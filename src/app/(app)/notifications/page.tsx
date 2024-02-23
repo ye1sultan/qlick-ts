@@ -13,7 +13,7 @@ export default function Notifications() {
 				/>
 				<Separator />
 			</div>
-			<div className="md:flex-row md:items-center sm:pr-4 flex w-full flex-col items-start justify-between gap-x-2 gap-y-2"></div>
+			<div className="flex w-full flex-col items-start justify-between gap-x-2 gap-y-2 sm:pr-4 md:flex-row md:items-center"></div>
 			<div className="w-full"></div>
 		</>
 	);

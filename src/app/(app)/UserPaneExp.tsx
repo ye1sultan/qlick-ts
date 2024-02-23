@@ -8,16 +8,16 @@ type User = {
 
 const UserPaneExp = ({ user }: { user: User }) => (
 	<div className="w-full px-2">
-		<div className="rounded-md flex h-16 w-full items-center justify-start bg-indigo-200">
-			<Avatar className="rounded-lg mx-4 h-9 w-9">
+		<div className="flex h-16 w-full items-center justify-start rounded-md bg-indigo-200">
+			<Avatar className="mx-4 h-9 w-9 rounded-lg">
 				<AvatarImage src={user.avatarUrl} />
 				<AvatarFallback>CN</AvatarFallback>
 			</Avatar>
-			<div className="leading-4 flex w-full flex-col items-start justify-center overflow-hidden tracking-normal">
-				<h3 className="font-semibold flex w-full items-center justify-between text-[14px]">
+			<div className="flex w-full flex-col items-start justify-center overflow-hidden leading-4 tracking-normal">
+				<h3 className="flex w-full items-center justify-between text-[14px] font-semibold">
 					<span className="truncate">{user.fullName}</span>
 				</h3>
-				<p className="font-medium text-zinc-500 dark:text-zinc-400 text-[12px]">
+				<p className="text-[12px] font-medium text-zinc-500 dark:text-zinc-400">
 					<span className="truncate">{user.email}</span>
 				</p>
 			</div>

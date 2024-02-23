@@ -25,7 +25,7 @@ const SidebarCol: FC = () => (
 					<TooltipTrigger asChild>
 						<Link
 							href="/overview"
-							className="rounded-md flex h-9 w-9 items-center justify-center hover:bg-indigo-200"
+							className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-indigo-200"
 						>
 							<Overview className="h-[20px] w-[20px]" />
 						</Link>
@@ -41,7 +41,7 @@ const SidebarCol: FC = () => (
 					<TooltipTrigger asChild>
 						<Link
 							href="/employees"
-							className="rounded-md flex h-9 w-9 items-center justify-center hover:bg-indigo-200"
+							className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-indigo-200"
 						>
 							<Employees className="h-[20px] w-[20px]" />
 						</Link>
@@ -57,7 +57,7 @@ const SidebarCol: FC = () => (
 					<TooltipTrigger asChild>
 						<Link
 							href="/records"
-							className="rounded-md flex h-9 w-9 items-center justify-center hover:bg-indigo-200"
+							className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-indigo-200"
 						>
 							<GateRecords className="h-[20px] w-[20px]" />
 						</Link>
@@ -75,7 +75,7 @@ const SidebarCol: FC = () => (
 					<TooltipTrigger asChild>
 						<Link
 							href="/profile"
-							className="rounded-md flex h-9 w-9 items-center justify-center hover:bg-indigo-200"
+							className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-indigo-200"
 						>
 							<Profile className="h-[20px] w-[20px]" />
 						</Link>
@@ -90,14 +90,14 @@ const SidebarCol: FC = () => (
 					<TooltipTrigger asChild>
 						<Link
 							href="/notifications"
-							className="rounded-md flex h-9 w-9 items-center justify-center hover:bg-indigo-200"
+							className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-indigo-200"
 						>
 							<Notifications className="h-[20px] w-[20px]" />
 						</Link>
 					</TooltipTrigger>
 					<TooltipContent side="right" className="flex items-center">
 						<p className="font-medium">Notifications</p>
-						<p className="font-medium ml-4 text-[#717175]">4</p>
+						<p className="ml-4 font-medium text-[#717175]">4</p>
 					</TooltipContent>
 				</Tooltip>
 			</TooltipProvider>
@@ -111,7 +111,7 @@ const SidebarCol: FC = () => (
 					<TooltipTrigger asChild>
 						<Link
 							href="/settings"
-							className="rounded-md flex h-9 w-9 items-center justify-center hover:bg-indigo-200"
+							className="flex h-9 w-9 items-center justify-center rounded-md hover:bg-indigo-200"
 						>
 							<Settings className="h-[20px] w-[20px]" />
 						</Link>
@@ -125,7 +125,7 @@ const SidebarCol: FC = () => (
 			<TooltipProvider delayDuration={0}>
 				<Tooltip>
 					<TooltipTrigger asChild>
-						<button className="rounded-md flex h-9 w-9 items-center justify-center text-red-500 hover:bg-indigo-200">
+						<button className="flex h-9 w-9 items-center justify-center rounded-md text-red-500 hover:bg-indigo-200">
 							<Exit className="h-[20px] w-[20px]" color="red" />
 						</button>
 					</TooltipTrigger>

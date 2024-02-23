@@ -47,7 +47,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 		<div className="flex max-h-screen w-full flex-col overflow-hidden">
 			<ResizablePanelGroup
 				direction="horizontal"
-				className="rounded-lg min-h-[200px] w-full border"
+				className="min-h-[200px] w-full rounded-lg border"
 			>
 				<ResizablePanel
 					className={`${leftSide ? 'hidden' : 'flex'} h-full min-h-screen`}
@@ -59,7 +59,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 					onCollapse={() => setIsCollapsed(true)}
 					onExpand={() => setIsCollapsed(false)}
 				>
-					<div className="font-semibold text-sm flex w-full flex-col items-center justify-start pb-2 pt-4">
+					<div className="flex w-full flex-col items-center justify-start pb-2 pt-4 text-sm font-semibold">
 						{!isCollapsed ? (
 							<>
 								<UserPaneExp user={user} />
@@ -78,13 +78,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 				<ResizableHandle />
 				<ResizablePanel className="h-screen overflow-hidden" defaultSize={83}>
 					<ScrollArea className="h-full w-full">
-						<div className="lg:hidden rounded-es-xl rounded-ee-xl mb-4 flex w-full items-center justify-between py-2 shadow-lg shadow-indigo-200">
+						<div className="mb-4 flex w-full items-center justify-between rounded-ee-xl rounded-es-xl py-2 shadow-lg shadow-indigo-200 lg:hidden">
 							<div className="ml-4 flex w-full items-center justify-center ">
 								<Avatar className="mr-2 h-9 w-9">
 									<AvatarImage src={user.avatarUrl} />
 									<AvatarFallback>CN</AvatarFallback>
 								</Avatar>
-								<h3 className="font-semibold text-lg flex w-full items-center justify-between">
+								<h3 className="flex w-full items-center justify-between text-lg font-semibold">
 									{user.fullName}
 								</h3>
 							</div>
@@ -93,7 +93,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 								<Drawer user={user} />
 							</div>
 						</div>
-						<div className="md:px-10 mb-6 h-full w-full px-4 pt-10">
+						<div className="mb-6 h-full w-full px-4 pt-10 md:px-10">
 							{children}
 						</div>
 					</ScrollArea>

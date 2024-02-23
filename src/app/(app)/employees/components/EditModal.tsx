@@ -55,7 +55,7 @@ export const Edit = ({
 		<Dialog>
 			<DialogTrigger asChild>
 				<div ref={close}>
-					<EditIcon className="stroke-zinc-500 hover:stroke-zinc-600 h-5 w-5" />
+					<EditIcon className="h-5 w-5 stroke-zinc-500 hover:stroke-zinc-600" />
 				</div>
 			</DialogTrigger>
 			<DialogContent className="sm:max-w-[425px]">
@@ -138,7 +138,7 @@ export const Edit = ({
 								<Button
 									onClick={() => setOpen(true)}
 									variant="outline"
-									className="font-normal w-[240px] pl-3 text-left"
+									className="w-[240px] pl-3 text-left font-normal"
 								>
 									{date ? (
 										formatDate(date.toISOString())

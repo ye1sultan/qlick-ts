@@ -186,8 +186,8 @@ export default function Employees() {
 				/>
 				<Separator />
 			</div>
-			<div className="sm:pr-4 flex w-full flex-row items-center justify-start gap-y-2">
-				<div className="sm:flex-row sm:justify-start sm:items-center flex w-full flex-col items-start justify-center gap-2">
+			<div className="flex w-full flex-row items-center justify-start gap-y-2 sm:pr-4">
+				<div className="flex w-full flex-col items-start justify-center gap-2 sm:flex-row sm:items-center sm:justify-start">
 					<SearchInput
 						employees={employees}
 						value={value}
@@ -195,8 +195,8 @@ export default function Employees() {
 						selectedEmployees={selectedEmployees}
 						setSelectedEmployees={setSelectedEmployees}
 					/>
-					<div className="sm:justify-end flex w-full items-center justify-start gap-2">
-						<Button size="icon" className="hover:bg-indigo-500 bg-indigo-400">
+					<div className="flex w-full items-center justify-start gap-2 sm:justify-end">
+						<Button size="icon" className="bg-indigo-400 hover:bg-indigo-500">
 							<Plus className="stroke-zinc-50" />
 						</Button>
 						<Button
@@ -205,28 +205,28 @@ export default function Employees() {
 							className="hover:bg-gray-200"
 							onClick={handleReset}
 						>
-							<Refresh className="stroke-zinc-800 h-4 w-4" />
+							<Refresh className="h-4 w-4 stroke-zinc-800" />
 						</Button>
 					</div>
 				</div>
 			</div>
 			<div className="h-full w-full py-6">
-				<h1 className="text-xl font-medium flex items-center justify-start gap-x-2">
+				<h1 className="flex items-center justify-start gap-x-2 text-xl font-medium">
 					<span data-testid="employee-count" className="text-indigo-600">
 						{selectedEmployees?.length}
 					</span>
 					<span data-testid="employee-heading">Employees</span>
 				</h1>
-				<div className="md:block rounded-md my-4 hidden border-[1px] border-indigo-200">
-					<div className="text-sm text-zinc-500 flex w-full items-center justify-between px-8 py-2 capitalize">
-						<div className="xl:w-1/5 w-1/4 text-start">name</div>
+				<div className="my-4 hidden rounded-md border-[1px] border-indigo-200 md:block">
+					<div className="flex w-full items-center justify-between px-8 py-2 text-sm capitalize text-zinc-500">
+						<div className="w-1/4 text-start xl:w-1/5">name</div>
 						<div className="w-1/4 text-start">email</div>
-						<div className="lg:block xl:w-1/6 hidden w-1/5 text-start">
+						<div className="hidden w-1/5 text-start lg:block xl:w-1/6">
 							phone
 						</div>
-						<div className="xl:w-1/6 w-1/5 text-start">role</div>
-						<div className="xl:block hidden w-1/6 text-start">join date</div>
-						<div className="xl:w-1/6 w-1/5 text-start">department</div>
+						<div className="w-1/5 text-start xl:w-1/6">role</div>
+						<div className="hidden w-1/6 text-start xl:block">join date</div>
+						<div className="w-1/5 text-start xl:w-1/6">department</div>
 					</div>
 					<Separator className="bg-indigo-200" />
 					{selectedEmployees?.map((employee, index) => (

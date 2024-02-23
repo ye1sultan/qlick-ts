@@ -15,7 +15,7 @@ const EmployeeRow: FC<{ employee: Employee }> = ({ employee }) => {
 			data-testid="employee-row"
 			className="relative flex w-full items-center justify-between px-8 py-4"
 		>
-			<div className="xl:w-1/5 font-medium flex w-1/4 items-center justify-start gap-x-2 text-start">
+			<div className="flex w-1/4 items-center justify-start gap-x-2 text-start font-medium xl:w-1/5">
 				<Avatar className="h-9 w-9">
 					<AvatarImage src={employee.avatarUrl} />
 					<AvatarFallback>{`${employee.name.split(' ')[0].charAt(0)} ${employee.name.split(' ')[1].charAt(0)}`}</AvatarFallback>
@@ -25,16 +25,16 @@ const EmployeeRow: FC<{ employee: Employee }> = ({ employee }) => {
 			<div className="w-1/4 truncate text-start text-[15px]">
 				{employee.email}
 			</div>
-			<div className="lg:block xl:w-1/6 hidden w-1/5 truncate text-start text-[15px]">
+			<div className="hidden w-1/5 truncate text-start text-[15px] lg:block xl:w-1/6">
 				{employee.phone}
 			</div>
-			<div className="xl:w-1/6 w-1/5 truncate text-start text-[15px]">
+			<div className="w-1/5 truncate text-start text-[15px] xl:w-1/6">
 				{employee.role}
 			</div>
-			<div className="xl:block hidden w-1/6 truncate text-start text-[15px]">
+			<div className="hidden w-1/6 truncate text-start text-[15px] xl:block">
 				{formatDate(employee.joinDate)}
 			</div>
-			<div className="xl:w-1/6 w-1/5 truncate text-start text-[15px]">
+			<div className="w-1/5 truncate text-start text-[15px] xl:w-1/6">
 				{employee.department}
 			</div>
 			<div className="absolute right-4 top-[50%] translate-y-[-50%] cursor-pointer">

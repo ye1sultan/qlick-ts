@@ -111,7 +111,7 @@ export const SearchInput: FC<SearchInputProps> = ({
 					aria-expanded={open}
 					className="flex w-full max-w-[300px] items-center justify-start gap-x-2"
 				>
-					<Search className="stroke-zinc-500 h-4 w-4" />
+					<Search className="h-4 w-4 stroke-zinc-500" />
 					{value ? (
 						selectedType === 'employee' ? (
 							selectedEmployees?.find((item) => item.value === value)?.label
@@ -136,7 +136,7 @@ export const SearchInput: FC<SearchInputProps> = ({
 					<CommandList>
 						<CommandEmpty>
 							<div className="flex items-center justify-center gap-x-2">
-								<UserNotFound className="stroke-zinc-600 h-5 w-5" />
+								<UserNotFound className="h-5 w-5 stroke-zinc-600" />
 								No results found.
 							</div>
 						</CommandEmpty>

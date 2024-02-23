@@ -41,17 +41,17 @@ const Drawer: FC<User> = ({ user }) => {
 				</SheetTrigger>
 				<SheetContent>
 					<SheetHeader>
-						<div className="rounded-md h-20 w-full">
+						<div className="h-20 w-full rounded-md">
 							<div className="flex h-full w-full items-center justify-start">
-								<Avatar className="rounded-lg mx-4 h-9 w-9">
+								<Avatar className="mx-4 h-9 w-9 rounded-lg">
 									<AvatarImage src={user.avatarUrl} />
 									<AvatarFallback>CN</AvatarFallback>
 								</Avatar>
-								<div className="leading-4 flex w-full flex-col items-start justify-center overflow-hidden tracking-normal">
-									<h3 className="font-semibold flex w-full items-center justify-between text-[14px]">
+								<div className="flex w-full flex-col items-start justify-center overflow-hidden leading-4 tracking-normal">
+									<h3 className="flex w-full items-center justify-between text-[14px] font-semibold">
 										<span className="truncate">{user.fullName}</span>
 									</h3>
-									<p className="font-medium text-zinc-500 dark:text-zinc-400 text-[12px]">
+									<p className="text-[12px] font-medium text-zinc-500 dark:text-zinc-400">
 										<span className="truncate">{user.email}</span>
 									</p>
 								</div>
@@ -59,12 +59,12 @@ const Drawer: FC<User> = ({ user }) => {
 						</div>
 					</SheetHeader>
 					<Separator className="mb-3" />
-					<div className="font-semibold text-sm flex h-full w-full flex-col items-center justify-between text-nowrap px-2">
+					<div className="flex h-full w-full flex-col items-center justify-between text-nowrap px-2 text-sm font-semibold">
 						<div className="flex w-full flex-col gap-y-1">
 							<SheetClose asChild>
 								<Link
 									href="/overview"
-									className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+									className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 								>
 									<Overview className="mr-2 h-[20px] w-[20px]" />
 									Overview
@@ -73,7 +73,7 @@ const Drawer: FC<User> = ({ user }) => {
 							<SheetClose>
 								<Link
 									href="/employees"
-									className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+									className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 								>
 									<Employees className="mr-2 h-[20px] w-[20px]" />
 									Employees
@@ -82,7 +82,7 @@ const Drawer: FC<User> = ({ user }) => {
 							<SheetClose>
 								<Link
 									href="/records"
-									className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+									className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 								>
 									<GateRecords className="mr-2 h-[20px] w-[20px]" />
 									Gate records
@@ -92,7 +92,7 @@ const Drawer: FC<User> = ({ user }) => {
 							<SheetClose>
 								<Link
 									href="/profile"
-									className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+									className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 								>
 									<Profile className="mr-2 h-[20px] w-[20px]" />
 									Profile
@@ -101,13 +101,13 @@ const Drawer: FC<User> = ({ user }) => {
 							<SheetClose asChild>
 								<Link
 									href="/notifications"
-									className="rounded-md flex h-9 w-full items-center justify-between px-3 hover:bg-indigo-200"
+									className="flex h-9 w-full items-center justify-between rounded-md px-3 hover:bg-indigo-200"
 								>
 									<div className="flex">
 										<Notifications className="mr-2 h-[20px] w-[20px]" />
 										Notifications
 									</div>
-									<p className="text-sm pr-1">4</p>
+									<p className="pr-1 text-sm">4</p>
 								</Link>
 							</SheetClose>
 							<Separator className="my-1" />
@@ -115,14 +115,14 @@ const Drawer: FC<User> = ({ user }) => {
 								<SheetClose asChild>
 									<Link
 										href="/settings"
-										className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+										className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 									>
 										<Settings className="mr-2 h-[20px] w-[20px]" />
 										Settings
 									</Link>
 								</SheetClose>
 								<SheetClose asChild>
-									<button className="sm:justify-end rounded-md flex h-9 w-full items-center justify-start px-3 text-red-500 hover:bg-indigo-200 ">
+									<button className="flex h-9 w-full items-center justify-start rounded-md px-3 text-red-500 hover:bg-indigo-200 sm:justify-end ">
 										<Exit className="mr-2 h-[20px] w-[20px]" color="red" />
 										Exit
 									</button>

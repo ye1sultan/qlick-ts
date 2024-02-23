@@ -8,9 +8,9 @@ type User = {
 
 const UserPaneCol = ({ user }: { user: User }) => (
 	<div className="w-full">
-		<div className="rounded-md h-16 w-full">
+		<div className="h-16 w-full rounded-md">
 			<div className="flex h-full w-full items-center justify-center">
-				<Avatar className="rounded-lg h-8 w-8">
+				<Avatar className="h-8 w-8 rounded-lg">
 					<AvatarImage src={user.avatarUrl} />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>

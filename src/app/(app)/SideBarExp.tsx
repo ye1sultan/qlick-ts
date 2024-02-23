@@ -16,21 +16,21 @@ const SidebarExp: FC = () => (
 		<div className="flex w-full flex-col gap-y-1">
 			<Link
 				href="/overview"
-				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+				className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 			>
 				<Overview className="mr-2 h-[20px] w-[20px]" />
 				Overview
 			</Link>
 			<Link
 				href="/employees"
-				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+				className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 			>
 				<Employees className="mr-2 h-[20px] w-[20px]" />
 				Employees
 			</Link>
 			<Link
 				href="/records"
-				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+				className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 			>
 				<GateRecords className="mr-2 h-[20px] w-[20px]" />
 				Gate records
@@ -38,20 +38,20 @@ const SidebarExp: FC = () => (
 			<Separator className="my-1" />
 			<Link
 				href="/profile"
-				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+				className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 			>
 				<Profile className="mr-2 h-[20px] w-[20px]" />
 				Profile
 			</Link>
 			<Link
 				href="/notifications"
-				className="rounded-md flex h-9 w-full items-center justify-between px-3 hover:bg-indigo-200"
+				className="flex h-9 w-full items-center justify-between rounded-md px-3 hover:bg-indigo-200"
 			>
 				<div className="flex">
 					<Notifications className="mr-2 h-[20px] w-[20px]" />
 					Notifications
 				</div>
-				<p className="text-sm pr-1">4</p>
+				<p className="pr-1 text-sm">4</p>
 			</Link>
 		</div>
 
@@ -60,12 +60,12 @@ const SidebarExp: FC = () => (
 
 			<Link
 				href="/settings"
-				className="rounded-md flex h-9 w-full items-center justify-start px-3 hover:bg-indigo-200"
+				className="flex h-9 w-full items-center justify-start rounded-md px-3 hover:bg-indigo-200"
 			>
 				<Settings className="mr-2 h-[20px] w-[20px]" />
 				Settings
 			</Link>
-			<button className="rounded-md flex h-9 w-full items-center justify-start px-3 text-red-500 hover:bg-indigo-200">
+			<button className="flex h-9 w-full items-center justify-start rounded-md px-3 text-red-500 hover:bg-indigo-200">
 				<Exit className="mr-2 h-[20px] w-[20px]" />
 				Exit
 			</button>
